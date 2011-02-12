@@ -20,8 +20,8 @@ class Thread
         # @return [Thread] Ruby native thread object
         #
 
-        attr_accessor :native
-        @native
+        attr_accessor :native_thread
+        @native_thread
         
         ##
         # Runs the thread code.
@@ -47,7 +47,7 @@ class Thread
         #
         
         def start!(silent = nil)
-            @native = Thread::new do
+            @native_thread = Thread::new do
                 begin
                     self.run()
                 rescue ::Exception => e
@@ -58,7 +58,7 @@ class Thread
                 end
             end
             
-            return @native
+            return @native_thread
         end
 
         ##
@@ -66,7 +66,7 @@ class Thread
         #
 
         def shutdown!
-            @native.terminate()
+            @native_thread.terminate()
         end
         
         ##
