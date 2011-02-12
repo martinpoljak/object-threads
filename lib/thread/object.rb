@@ -1,7 +1,12 @@
 # encoding: utf-8
+# (c) 2010-2011 Martin Kozák (martinkozak@martinkozak.net)
 
 require "thread"
-puts
+
+##
+# Standard Ruby's +Thread+ class.
+#
+
 class Thread
 
     ##
@@ -11,10 +16,12 @@ class Thread
     module Object
 
         ##
-        # Holds thread instance.
+        # Holds Ruby native thread instance.
+        # @return [Thread] Ruby native thread object
         #
 
-        @thread
+        attr_accessor :native
+        @native
         
         ##
         # Runs the thread code.
@@ -22,24 +29,36 @@ class Thread
         # 
         
         def run
+            raise Exception::new("Method #run must be overriden. It should contain body of the thread.")
         end
 
         ##
-        # Starts the thread by calling the run() method
-        # as in Python.
+        # Starts the thread by calling the +#run+ method as in Python.
+        # It's non-blocking, of sure.
+        #
+        # Uncacthed rxceptions raised by thread are written out to 
+        # +STDERR+ by default. This feature can be turned of by the 
+        # +silent+ argument.
+        #
+        # @param [nil, :silent] silent indicates, it shouln't write 
+        #   exceptions out
+        # @return [Thread] native Ruby thread
+        # @see #run
         #
         
-        def start!
-            @thread = Thread::new do
+        def start!(silent = nil)
+            @native = Thread::new do
                 begin
                     self.run()
                 rescue ::Exception => e
-                    self.log "THREAD EXCEPTION! " << e.class.to_s << ": " << e.message
-                    e.backtrace.each { |i| self.log i }
+                    if silent != :silent
+                        self.log "THREAD EXCEPTION! " << e.class.to_s << ": " << e.message
+                        e.backtrace.each { |i| self.log i }
+                    end
                 end
             end
             
-            return @thread
+            return @native
         end
 
         ##
@@ -47,11 +66,14 @@ class Thread
         #
 
         def shutdown!
-            @thread.terminate()
+            @native.terminate()
         end
         
         ##
         # Logs an message.
+        # By overriding this, you can change the format.
+        #
+        # @param [String] message message for writing out
         #
 
         def log(message)
