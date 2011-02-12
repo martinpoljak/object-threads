@@ -16,7 +16,7 @@ Jeweler::Tasks.new do |gem|
   gem.name = "object-threads"
   gem.homepage = "http://github.com/martinkozak/object-threads"
   gem.license = "MIT"
-  gem.summary = 'Emulates Python threads paradigm. To create threads by giving some block to constructor is sometime slightly unpractical way of running threads. This library encapsulates threads to classes, so class can define itself as thread which can be run by plain method call.'
+  gem.summary = 'Emulates Python threading API paradigm. Creating threads by giving some block to constructor is sometime slightly unpractical way of running threads. This library allows encapsulating threads to classes, so class can define itself as thread which can be run by plain method call.'
   gem.email = "martinkozak@martinkozak.net"
   gem.authors = ["Martin Kozák"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
