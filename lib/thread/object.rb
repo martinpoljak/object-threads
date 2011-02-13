@@ -70,6 +70,15 @@ class Thread
         end
         
         ##
+        # Indicates thread is alive.
+        # @param [Boolean] +true+ if it is, +false+ in otherwise
+        #
+        
+        def alive?
+            @native_thread.alive?
+        end
+        
+        ##
         # Logs an message.
         # By overriding this, you can change the format.
         #
