@@ -1,5 +1,5 @@
-FIFO Cache
-==========
+Object Threads
+==============
 
 **Object Threads** emulates Python threading API paradigm. Creating
 threads by giving some block to constructor is sometime slightly 
