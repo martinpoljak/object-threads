@@ -5,7 +5,9 @@ FIFO Cache
 threads by giving some block to constructor is sometime slightly 
 unpractical way of running threads. This library allows encapsulating 
 threads to classes, so class can define itself as thread which can be 
-run by plain method call. For example:
+run by plain method call. 
+
+For example:
 
     require "thread/object"
 
