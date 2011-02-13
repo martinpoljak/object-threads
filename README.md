@@ -26,6 +26,12 @@ For example:
     puts "Something in main."
     
 Will print out `"Something in main."` and then `"Something in thread."`.
+
+Thread object module directly supports `#alive?` and `#shutdown!` 
+methods only for thread manipulation. For other operations with the 
+thread, call directly its `#native_thread` property which contains 
+appropriate native [Ruby Thread][1] class. It's for avoiding potential
+method name conflicts between module and user class.
     
     
 Contributing
@@ -35,15 +41,16 @@ Contributing
 2. Create a branch (`git checkout -b 20101220-my-change`).
 3. Commit your changes (`git commit -am "Added something"`).
 4. Push to the branch (`git push origin 20101220-my-change`).
-5. Create an [Issue][1] with a link to your branch.
+5. Create an [Issue][2] with a link to your branch.
 6. Enjoy a refreshing Diet Coke and wait.
 
 
 Copyright
 ---------
 
-Copyright &copy; 2010-2011 [Martin Kozák][2]. See `LICENSE.txt` for
+Copyright &copy; 2010-2011 [Martin Kozák][3]. See `LICENSE.txt` for
 further details.
 
-[1]: http://github.com/martinkozak/qrpc/issues
-[2]: http://www.martinkozak.net/
+[1]: http://www.ruby-doc.org/core/classes/Thread.html
+[2]: http://github.com/martinkozak/qrpc/issues
+[3]: http://www.martinkozak.net/
