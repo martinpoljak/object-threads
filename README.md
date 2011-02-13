@@ -29,9 +29,9 @@ Will print out `"Something in main."` and then `"Something in thread."`.
 
 Thread object module directly supports `#alive?` and `#shutdown!` 
 methods only for thread manipulation. For other operations with the 
-thread, call directly its `#native_thread` property which contains 
-appropriate native [Ruby Thread][1] class. It's for avoiding potential
-method name conflicts between module and user class.
+thread, call directly object's `#native_thread` property which contains 
+appropriate native [Ruby Thread][1] object. This setup is for avoiding 
+potential method name conflicts between module and user class.
     
     
 Contributing
